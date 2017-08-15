@@ -1,3 +1,1 @@
-q=require;z=q('lzma-native');f=q('fs');p=f.openSync;e=f.readSync;w=f.writeSync;a=process.argv;B=Buffer;u='readUIntBE'
-i=p(a[2],'r');b=new B(12);e(i,b,0,12);o=p(a[3],'w');n();function n(){if(e(i,b,4,8)){l=b[u](4,8)
-e(i,b,4,8);m=b[u](4,8);d=new B(m);e(i,d,0,m);if(l>m)z.decompress(d,r=>{w(o,r,0,l);n()});else{w(o,d,0,m);n()}}}
+q=require;with(q('fs'))p=openSync,r=h=>readSync(i,b,0,h),w=write;[,,x,y]=process.argv;B=j=>(b=new Buffer(j),r(j));i=p(x,'r');B(12);o=p(y,'w');u=_=>b.readUIntBE(0,8);n=_=>B(8)&&(l=u(),r(8),B(m=u()),l>m?q('lzma-native').decompress(b,s=>w(o,s,0,l,n)):w(o,b,0,m,n));n()
